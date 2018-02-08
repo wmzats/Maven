@@ -1,0 +1,20 @@
+Resolve the conflict introduce by other import project.
+1. Chase the cause by ..
+Caused by: java.lang.NoSuchMethodError: org.apache.cxf.bus.spring.BusApplicationContextResourceResolver.<init>(Lorg/springframework/context/ApplicationContext;)V
+	at org.apache.cxf.bus.spring.SpringBus.setApplicationContext(SpringBus.java:76)  
+  -->
+          m.addResourceResolver(new BusApplicationContextResourceResolver(applicationContext));
+  -->
+          public class BusApplicationContextResourceResolver
+          
+          This class is from the import project but not the original one.
+          
+2. Identify the project for the issue class, then exclude it from the dependence
+				<exclusion> 
+					<groupId>org.apache.cxf</groupId>
+					<artifactId>cxf-bundle</artifactId>
+				</exclusion>
+          
+          
+          
+          
